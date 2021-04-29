@@ -66,6 +66,15 @@ class Section extends Model
                 ]);
         });
     }
+    /**
+     * Get the page relationship.
+     *
+     * @return BelongsTo
+     */
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
 
     /**
      * The "booting" method of the model.

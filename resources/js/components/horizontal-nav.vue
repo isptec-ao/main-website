@@ -96,16 +96,17 @@ export default {
 
             <template v-for="(item, index) of menuItems">
               <li class="nav-item dropdown" :key="index">
-                <a
-                  class="nav-link dropdown-toggle arrow-none"
-                  v-if="!item.subItems"
-                  id="topnav-components"
-                  :href="item.link"
-                  role="button"
-                >
-                  <i :class="`bx ${item.icon} mr-2`"></i>{{ $t(item.label) }}
-                  <div class="arrow-down" v-if="hasItems(item)"></div>
-                </a>
+                
+                <inertia-link 
+                    class="nav-link dropdown-toggle arrow-none"
+                    v-if="!item.subItems"
+                    id="topnav-components"
+                    :href="item.link"
+                    role="button"
+                    >
+                    <i :class="`bx ${item.icon} mr-2`"></i>{{ $t(item.label) }}
+                    <div class="arrow-down" v-if="hasItems(item)"></div>
+                </inertia-link>
 
                 <a
                   v-if="item.subItems"
@@ -126,13 +127,15 @@ export default {
                   v-if="hasItems(item)"
                 >
                   <template v-for="(subitem, index) of item.subItems">
-                    <a
-                      class="col dropdown-item side-nav-link-ref"
-                      :key="index"
-                      v-if="!hasItems(subitem)"
-                      :href="subitem.link"
-                      >{{ $t(subitem.label) }}</a
-                    >
+                
+                    <inertia-link 
+                        class="col dropdown-item side-nav-link-ref"
+                        :key="index"
+                        v-if="!hasItems(subitem)"
+                        :href="subitem.link"
+                        >
+                        {{ $t(subitem.label) }}
+                    </inertia-link>
 
                     <div class="dropdown" v-if="hasItems(subitem)" :key="index">
                       <a
@@ -146,13 +149,15 @@ export default {
                         <template
                           v-for="(subSubitem, index) of subitem.subItems"
                         >
-                          <a
-                            class="dropdown-item side-nav-link-ref"
-                            :key="index"
-                            v-if="!hasItems(subSubitem)"
-                            :href="subSubitem.link"
-                            >{{ $t(subSubitem.label) }}</a
-                          >
+                          
+                          <inertia-link 
+                              class="dropdown-item side-nav-link-ref"
+                              :key="index"
+                              v-if="!hasItems(subSubitem)"
+                              :href="subSubitem.link"
+                              >
+                              {{ $t(subSubitem.label) }}
+                          </inertia-link>
                           <div
                             class="dropdown"
                             v-if="hasItems(subSubitem)"
@@ -171,13 +176,15 @@ export default {
                                   subSubSubitem, index
                                 ) of subSubitem.subItems"
                               >
-                                <a
-                                  class="dropdown-item side-nav-link-ref"
-                                  :key="index"
-                                  :href="subSubSubitem.link"
-                                  routerLinkActive="active"
-                                  >{{ $t(subSubSubitem.label) }}</a
-                                >
+
+                                <inertia-link 
+                                    class="dropdown-item side-nav-link-ref"
+                                    :key="index"
+                                    :href="subSubSubitem.link"
+                                    routerLinkActive="active"
+                                    >
+                                    {{ $t(subSubSubitem.label) }}
+                                </inertia-link>
                               </template>
                             </div>
                           </div>

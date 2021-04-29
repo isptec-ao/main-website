@@ -73,7 +73,7 @@ class SliderImage extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('images')
+        $this->addMediaCollection('image')
             ->acceptsMimeTypes([
                 'image/jpeg',
                 'image/png',
@@ -82,6 +82,16 @@ class SliderImage extends Model implements HasMedia
             ->useFallbackUrl('/images/avatar-1.jpg')
             ->useFallbackPath(public_path('/images/avatar-1.jpg'))
             ->singleFile();    
+    }
+
+    /**
+     * Get the page relationship.
+     *
+     * @return BelongsTo
+     */
+    public function slider()
+    {
+        return $this->belongsTo(Slider::class);
     }
 
     /**

@@ -48,4 +48,6 @@ return [
         'news' => 'News',
         'events' => 'Events',
     ],
+    'featured_images' => 'Featured Images',
+    'featured_documents' => 'Featured Documents',
 ];

@@ -30,7 +30,7 @@ class StoreCourseCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:website_tags,name',
+            'name' => 'required|unique:website_course_cats,name',
         ];
     }
 }

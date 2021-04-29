@@ -15,7 +15,7 @@ class Department extends Model
 {
     use SoftDeletes, HasTranslations;
 
-    public $translatable = ['name', 'description'];
+    public $translatable = ['name', 'description', 'code'];
 
     /**
      * The table associated with the model.

@@ -14,7 +14,7 @@
         }, [dashboard]),
 
         metaInfo: {
-            title: 'Departments'
+            title: 'Departamentos'
         },
         components: {
             
@@ -23,6 +23,9 @@
           return {
             form: this.$inertia.form({
             name: this.$page.props.department.name,
+            code: this.$page.props.department.code,
+            email: this.$page.props.department.email,
+            tel_no: this.$page.props.department.tel_no,
             description: this.$page.props.department.description,
             lang: this.$page.props.lang
           }),
@@ -85,7 +88,7 @@
     <div class="row">
       <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-          <h4 class="mb-0 font-size-18">Departments</h4>
+          <h4 class="mb-0 font-size-18">Departamentos</h4>
 
           <div class="page-title-right">
             <b-button-group class="btn-group-sm mt-2">
@@ -115,9 +118,21 @@
                 <b-form-input id="name" type="text" v-model="form.name" :class="{'is-invalid': form.errors.name}"></b-form-input>
                 <div v-if="form.errors.name" class="invalid-feedback animated fadeIn">{{form.errors.name}}</div>
               </b-form-group>
-              <b-form-group label="Description" label-for="description">
+              <b-form-group label="Sígla" label-for="code">
+                <b-form-input id="code" type="text" v-model="form.code" :class="{'is-invalid': form.errors.code}"></b-form-input>
+                <div v-if="form.errors.code" class="invalid-feedback animated fadeIn">{{form.errors.code}}</div>
+              </b-form-group>
+              <b-form-group label="Descrição" label-for="description">
                 <ckeditor v-model="form.description" :editor="editor" :config="editorConf"></ckeditor>
                 <div v-if="form.errors.description" class="invalid-feedback animated fadeIn">{{form.errors.description}}</div>
+              </b-form-group>
+              <b-form-group label="Email" label-for="email">
+                <b-form-input id="email" type="text" v-model="form.email" :class="{'is-invalid': form.errors.email}"></b-form-input>
+                <div v-if="form.errors.email" class="invalid-feedback animated fadeIn">{{form.errors.email}}</div>
+              </b-form-group>
+              <b-form-group label="Extensão" label-for="tel_no">
+                <b-form-input id="tel_no" type="text" v-model="form.tel_no" :class="{'is-invalid': form.errors.tel_no}"></b-form-input>
+                <div v-if="form.errors.tel_no" class="invalid-feedback animated fadeIn">{{form.errors.tel_no}}</div>
               </b-form-group>
                 <b-button type="submit" class="btn btn-rounded" variant="brand" v-if="!form.processing">Registar</b-button>
                 <b-button class="btn btn-block btn-rounded" variant="brand" v-if="form.processing">

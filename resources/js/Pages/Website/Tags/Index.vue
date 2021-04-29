@@ -15,7 +15,7 @@
         }, [dashboard]),
 
         metaInfo: {
-            title: 'Tags'
+            title: 'Etiquetas'
         },
         components: {
           Pagination,
@@ -23,7 +23,7 @@
         },
         data () {
             return {
-                title: 'Tags',
+                title: 'Etiquetas',
                 form: {
                 search: '',
                 trashed: false,
@@ -75,7 +75,7 @@
     <div class="row">
       <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-          <h4 class="mb-0 font-size-18">Tags</h4>
+          <h4 class="mb-0 font-size-18">Etiquetas</h4>
           <div class="page-title-right">
             <b-button-group class="btn-group-sm mt-2">
                 <b-button v-b-modal.action-info variant="secondary">
@@ -168,9 +168,9 @@
               <table class="table table-bordered mb-0">
                 <thead>
                   <tr>
-                    <th>Name</th>
+                    <th>Nome</th>
                     <th>Slug</th>
-                    <th>Posts Count</th>
+                    <th>N. Notícias</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -192,7 +192,7 @@
                           </b-button>
                           <b-dropdown bottom size="sm">
                             <template v-slot:button-content>
-                                <i class="bx bx-plus align-middle"></i> Translations
+                                <i class="bx bx-plus align-middle"></i> Traduções
                             </template>
                             <b-dropdown-item class="font-size-sm" v-for="lang in $page.props.locales" :key="lang" @click="setTrans(tag.id, lang)">
                             {{ lang.toUpperCase() }}

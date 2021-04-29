@@ -68,6 +68,16 @@ class ServiceCategory extends Model
     }
 
     /**
+     * Get the department relationship.
+     *
+     * @return BelongsTo
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    /**
      * The "booting" method of the model.
      *
      * @return void

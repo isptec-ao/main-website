@@ -29,8 +29,18 @@ class StorePageRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'title' => 'required|unique:website_pages,title'
-        ];
+        if ($this->isMethod('post')) {
+            $rules = [
+                'title' => 'required|unique:website_pages,title',
+                'code' => 'required|unique:website_pages,code',
+            ];
+        } else {
+            $rules = [
+                'title' => 'required|unique:website_pages,title,' . request()->page,
+                'code' => 'required|unique:website_pages,code,' . request()->page,
+            ];
+        }
+
+        return $rules;
     }
 }

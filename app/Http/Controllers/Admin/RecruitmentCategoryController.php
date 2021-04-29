@@ -48,7 +48,8 @@ class RecruitmentCategoryController extends Controller
         DB::transaction(function () use ($request) {
             $recruitmentcategory = RecruitmentCategory::create([
                 'name' => $request->name,
-                'description' => $request->description
+                'description' => $request->description,
+                'user_id' => auth('website')->user()->id,
             ]);
         });
 

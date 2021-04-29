@@ -20,6 +20,14 @@ class SetLocale
             //
             app()->setLocale(session()->get('locale'));
         }
+        if($request->lang) {
+            //
+            session()->put('locale', $request->lang);
+        }
+
+        if(!session()->has('locale') && !$request->lang) {
+            session()->put('locale', $lang);
+        }
         // (in_array($lang, config('app.locales')) ? app()->setLocale($lang) : app()->setLocale('pt'));
 
         return $next($request);

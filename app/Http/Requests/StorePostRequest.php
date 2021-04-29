@@ -41,4 +41,20 @@ class StorePostRequest extends FormRequest
             'meta' => 'nullable|array',
         ];
     }
+
+    /**
+     * Configure the validator instance.
+     *
+     * @param  \Illuminate\Validation\Validator  $validator
+     * @return void
+     */
+    public function prepareForValidation()
+    {
+        // dd(request()->all());
+        $this->merge([
+            // 'page_id' => request()->page_id['id'] ?? null,
+            'topics' => collect(request()->topics)->pluck('id')->toArray() ?? null,
+            'tags' => collect(request()->tags)->pluck('id')->toArray() ?? null,
+        ]);
+    }
 }

@@ -15,7 +15,7 @@
         }, [dashboard]),
 
         metaInfo: {
-            title: 'Posts'
+            title: 'Notícias'
         },
         components: {
           Pagination,
@@ -23,7 +23,7 @@
         },
         data () {
             return {
-                title: 'Posts',
+                title: 'Notícias',
                 form: {
                 search: '',
                 trashed: false,
@@ -76,7 +76,7 @@
     <div class="row">
       <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-          <h4 class="mb-0 font-size-18">Posts</h4>
+          <h4 class="mb-0 font-size-18">Notícias</h4>
           <div class="page-title-right">
             <b-button-group class="btn-group-sm mt-2">
                 <b-button v-b-modal.action-info variant="secondary">
@@ -118,7 +118,7 @@
             <div class="card-body">
               <div class="media">
                 <div class="media-body">
-                  <p class="text-muted font-weight-medium">Draft</p>
+                  <p class="text-muted font-weight-medium">Rascunho</p>
                   <h4 class="mb-0">{{ $page.props.draftCount }}</h4>
                 </div>
 
@@ -137,7 +137,7 @@
             <div class="card-body">
               <div class="media">
                 <div class="media-body">
-                  <p class="text-muted font-weight-medium">Published</p>
+                  <p class="text-muted font-weight-medium">Publicações</p>
                   <h4 class="mb-0">{{ $page.props.publishedCount }}</h4>
                 </div>
 
@@ -234,10 +234,10 @@
               <table class="table table-bordered mb-0">
                 <thead>
                   <tr>
-                    <th>Title</th>
+                    <th>Título</th>
                     <th>Slug</th>
-                    <th>Published</th>
-                    <th>Views Count</th>
+                    <th>Publicação</th>
+                    <th>N. Visualizações</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -260,7 +260,7 @@
                           </b-button>
                           <b-dropdown bottom size="sm">
                             <template v-slot:button-content>
-                                <i class="bx bx-plus align-middle"></i> Translations
+                                <i class="bx bx-plus align-middle"></i> Traduções
                             </template>
                             <b-dropdown-item class="font-size-sm" v-for="lang in $page.props.locales" :key="lang" @click="setTrans(post.id, lang)">
                             {{ lang.toUpperCase() }}

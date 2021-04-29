@@ -32,7 +32,7 @@
                                 <slot />
                                 <b-form-group label="Email / Usuário" label-for="login">
                                     <b-form-input v-model="form.login" type="text" :class="{'is-invalid': form.errors.email || form.errors.username}" id="login" name="login" placeholder="Email / Usuário"></b-form-input>
-                                    <div v-if="form.errors.email || form.errors.username" class="invalid-feedback animated fadeIn">{{( form.errors.email ? form.errors.email[0] : form.errors.username[0] )}}</div>
+                                    <div v-if="form.errors.email || form.errors.username" class="invalid-feedback animated fadeIn">{{( form.errors.email ? form.errors.email : form.errors.username )}}</div>
                                 </b-form-group>
 
                                 <b-form-group label="Password" label-for="password">
@@ -45,7 +45,7 @@
                                         name="password"
                                         placeholder="Inserir Senha"
                                     ></b-form-input>
-                                    <div v-if="form.errors.password" class="invalid-feedback animated fadeIn">{{ form.errors.password[0] }}</div>
+                                    <div v-if="form.errors.password" class="invalid-feedback animated fadeIn">{{ form.errors.password }}</div>
                                 </b-form-group>
                                 <div class="custom-control custom-checkbox">
                                     <input v-model="form.remember" type="checkbox" id="login-remember" name="login-remember" class="custom-control-input" />

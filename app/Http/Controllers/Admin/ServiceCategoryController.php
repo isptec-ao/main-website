@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreServiceCategoryRequest;
 use App\Models\Canvas\ServiceCategory;
+use App\Models\Canvas\Department;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Inertia\Inertia;
@@ -24,7 +25,7 @@ class ServiceCategoryController extends Controller
     {   
         return Inertia::render('Website/ServiceCategories/Index', [
             'filters' => $request->all('search', 'trashed', 'range'),
-            'servicecategories' => ServiceCategory::orderBy('name')
+            'servicecategories' => ServiceCategory::with('department')->orderBy('name')
                 ->filter($request->only('search', 'trashed'))
                 ->paginate(5)
                 // ->only('id', 'name', 'description')
@@ -34,7 +35,9 @@ class ServiceCategoryController extends Controller
     
     public function create()
     {
-        return Inertia::render('Website/ServiceCategories/Create');
+        return Inertia::render('Website/ServiceCategories/Create',[
+            'departments' => Department::get(['id','name']),
+        ]);
     }
 
     /**
@@ -126,11 +129,13 @@ class ServiceCategoryController extends Controller
 
         return Inertia::render('Website/ServiceCategories/Lang', [
             'lang' => $request->lang,
-            'academiccategory' => [
+            'departments' => Department::get(['id','name']),
+            'servicecategory' => [
                 'id' => $servicecategory->id,
                 'name' => $servicecategory->name,
                 'description' => $servicecategory->description,
                 'department_id' => $servicecategory->department_id,
+                'department' => $servicecategory->department,
             ],
         ]);
     }
@@ -142,7 +147,7 @@ class ServiceCategoryController extends Controller
      * @param $id
      * @return mixed
      */
-    public function settranslation(Request $request, $id)
+    public function settranslation(StoreServiceCategoryRequest $request, $id)
     {
 
         DB::transaction(function () use ($request, $id) {

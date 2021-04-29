@@ -48,6 +48,9 @@ class DepartmentController extends Controller
         DB::transaction(function () use ($request) {
             $department = Department::create([
                 'name' => $request->name,
+                'code' => $request->code,
+                'email' => $request->email,
+                'tel_no' => $request->tel_no,
                 'description' => $request->description
             ]);
         });
@@ -128,6 +131,9 @@ class DepartmentController extends Controller
             'department' => [
                 'id' => $department->id,
                 'name' => $department->name,
+                'code' => $department->code,
+                'email' => $department->email,
+                'tel_no' => $department->tel_no,
                 'description' => $department->description,
             ],
         ]);
@@ -146,7 +152,10 @@ class DepartmentController extends Controller
         DB::transaction(function () use ($request, $id) {
             $department = Department::findOrFail($id);
 
+            $department->email = $request->email;
+            $department->tel_no = $request->tel_no;
             $department->setTranslation('name', strtolower($request->lang), $request->name);
+            $department->setTranslation('code', strtolower($request->lang), $request->code);
             $department->setTranslation('description', strtolower($request->lang), $request->description);
 
             $department->save();

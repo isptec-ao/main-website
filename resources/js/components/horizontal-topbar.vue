@@ -112,7 +112,7 @@ export default {
               <img src="/images/logo-light.svg" alt height="22" />
             </span>
             <span class="logo-lg">
-              <img src="/images/logo-light.png" alt height="19" />
+              <img src="/images/logo-light.png" alt height="36" />
             </span>
           </a>
         </div>
@@ -364,12 +364,10 @@ export default {
             {{ $t("navbar.dropdown.henry.list.lockscreen") }}
           </b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
-          <a href="/logout" class="dropdown-item text-danger">
-            <i
-              class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"
-            ></i>
-            {{ $t("navbar.dropdown.henry.list.logout") }}
-          </a>
+          <inertia-link method="post" class="dropdown-item text-danger" :href="route('canvas.logout')" as="button">
+                <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i>
+                {{ $t('navbar.dropdown.henry.list.logout') }}
+          </inertia-link>
         </b-dropdown>
 
         <div class="dropdown d-inline-block">

@@ -22,9 +22,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="{{ url('favicon.ico') }}">
     <title>
-        @yield('title', config('app.name', 'Skote'))
+        @yield('title', config('app.name', 'Canvas'))
     </title>
-    <meta content="Skote is a fully featured premium Vuejs admin dashboard template built on top of awesome Bootstrap 4.4.1" name="description" />
+    <meta content="Canvas" name="description" />
     
     <link href="{{ asset($css_file) }}" rel="stylesheet" id="layout-css">
     <script>
@@ -32,13 +32,13 @@
             'csrfToken' => csrf_token()
         ]) !!};
     </script>
-    <script src="{{ mix('/js/app.js') }}" defer></script>
+    <script src="{{ asset('/js/app.js') }}" defer></script>
     @routes
 </head>
 
 <body>
     <noscript>
-        <strong>We're sorry but skote doesn't work properly without JavaScript enabled. Please enable it to
+        <strong>We're sorry but canvas doesn't work properly without JavaScript enabled. Please enable it to
             continue.</strong>
     </noscript>
     <!-- built files will be auto injected -->

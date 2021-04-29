@@ -14,7 +14,7 @@ use Carbon\Carbon;
 
 class Tag extends Model
 {
-    use SoftDeletes, HasUuid, HasTranslations;
+    use SoftDeletes, HasTranslations;
 
     public $translatable = ['slug', 'name'];
 
@@ -37,21 +37,21 @@ class Tag extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'id';
+    // protected $primaryKey = 'id';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    // protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
-    public $incrementing = false;
+    // public $incrementing = false;
 
     /**
      * The number of models to return for pagination.

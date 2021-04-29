@@ -14,7 +14,7 @@
         }, [dashboard]),
 
         metaInfo: {
-            title: 'Posts'
+            title: 'Notícias'
         },
         components: {
             
@@ -90,7 +90,7 @@
     <div class="row">
       <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-          <h4 class="mb-0 font-size-18">Posts</h4>
+          <h4 class="mb-0 font-size-18">Notícias</h4>
 
           <div class="page-title-right">
             <b-button-group class="btn-group-sm mt-2">
@@ -111,20 +111,20 @@
       <div class="col-lg-8">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title mb-4">Conteudo</h4>
+            <h4 class="card-title mb-4">Conteúdo</h4>
 
             <!-- Create Posts Form -->
             <b-form @submit.prevent="form.post('/canvas/posts')">
               <slot />
-              <b-form-group label="Body" label-for="body">
+              <b-form-group label="Corpo" label-for="body">
                 <ckeditor v-model="form.body" :editor="editor" :config="editorConf"></ckeditor>
                 <div v-if="form.errors.body" class="invalid-feedback animated fadeIn">{{form.errors.body}}</div>
               </b-form-group>
-              <b-form-group label="Title" label-for="title">
+              <b-form-group label="Título" label-for="title">
                 <b-form-input id="title" type="text" v-model="form.title" :class="{'is-invalid': form.errors.title}"></b-form-input>
                 <div v-if="form.errors.title" class="invalid-feedback animated fadeIn">{{form.errors.title}}</div>
               </b-form-group>
-              <b-form-group label="Summary" label-for="summary">
+              <b-form-group label="Sumário" label-for="summary">
                 <b-form-input id="summary" type="text" v-model="form.summary" :class="{'is-invalid': form.errors.summary}"></b-form-input>
                 <div v-if="form.errors.summary" class="invalid-feedback animated fadeIn">{{form.errors.summary}}</div>
               </b-form-group>
@@ -139,12 +139,12 @@
                   </b-form-file>
               </b-form-group>
 
-              <b-form-group label="Caption" label-for="featured_image_caption">
+              <b-form-group label="Legenda" label-for="featured_image_caption">
                 <b-form-input id="featured_image_caption" type="text" v-model="form.featured_image_caption" :class="{'is-invalid': form.errors.featured_image_caption}"></b-form-input>
                 <div v-if="form.errors.featured_image_caption" class="invalid-feedback animated fadeIn">{{form.errors.featured_image_caption}}</div>
               </b-form-group>
 
-              <b-form-group label="Publish At" label-for="published_at">
+              <b-form-group label="Publicação" label-for="published_at">
               <date-picker input-class="form-control"
                             v-model="form.published_at"
                             append-to-body
@@ -160,7 +160,7 @@
               </date-picker>
               </b-form-group>
 
-              <b-form-group label="Tags" label-for="tags">
+              <b-form-group label="Etiquetas" label-for="tags">
               <multiselect
                   id="ajax"
                   v-model="form.tags"
@@ -179,7 +179,7 @@
               </multiselect>
               </b-form-group>
 
-              <b-form-group label="Topics" label-for="topics">
+              <b-form-group label="Tópicos" label-for="topics">
               <multiselect
                   id="ajax"
                   v-model="form.topics"

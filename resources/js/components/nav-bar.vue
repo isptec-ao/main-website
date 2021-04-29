@@ -333,7 +333,7 @@ export default {
           </b-dropdown-item>
           <b-dropdown-divider></b-dropdown-divider>
           
-          <inertia-link method="post" class="dropdown-item text-danger" :href="route('canvas.logout')">
+          <inertia-link method="post" class="dropdown-item text-danger" :href="route('canvas.logout')" as="button">
                 <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i>
                 {{ $t('navbar.dropdown.henry.list.logout') }}
           </inertia-link>

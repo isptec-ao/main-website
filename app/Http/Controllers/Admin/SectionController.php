@@ -11,6 +11,7 @@ use Inertia\Inertia;
 use DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\Canvas\Page;
 
 class SectionController extends Controller
 {
@@ -24,7 +25,7 @@ class SectionController extends Controller
     {   
         return Inertia::render('Website/Sections/Index', [
             'filters' => $request->all('search', 'trashed', 'range'),
-            'pages' => Section::orderBy('title')
+            'sections' => Section::with('page')->orderBy('title')
                 ->filter($request->only('search', 'trashed'))
                 ->paginate(5)
                 // ->only('id', 'name', 'description')
@@ -34,7 +35,9 @@ class SectionController extends Controller
     
     public function create()
     {
-        return Inertia::render('Website/Sections/Create');
+        return Inertia::render('Website/Sections/Create', [
+            'pages' => Page::get(['id','title']),
+        ]);
     }
 
     /**
@@ -122,14 +125,16 @@ class SectionController extends Controller
 
     public function lang(Request $request, $id)
     {
-        $section = Section::withTrashed()->findOrFail($id)->setLocale($request->lang);
+        $section = Section::with('page')->withTrashed()->findOrFail($id)->setLocale($request->lang);
 
         return Inertia::render('Website/Sections/Lang', [
             'lang' => $request->lang,
-            'page' => [
+            'pages' => Page::get(['id','title']),
+            'section' => [
                 'id' => $section->id,
                 'title' => $section->title,
                 'page_id' => $section->page_id,
+                'page' => $section->page,
                 'description' => $section->description,
             ],
         ]);
@@ -142,7 +147,7 @@ class SectionController extends Controller
      * @param $id
      * @return mixed
      */
-    public function settranslation(Request $request, $id)
+    public function settranslation(StoreSectionRequest $request, $id)
     {
 
         DB::transaction(function () use ($request, $id) {

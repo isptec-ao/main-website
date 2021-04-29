@@ -9,11 +9,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use App\Traits\HasTranslations;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\File;
 use Carbon\Carbon;
 
-class Page extends Model
+class Page extends Model implements HasMedia
 {
-    use SoftDeletes, HasTranslations;
+    use SoftDeletes, HasTranslations, InteractsWithMedia;
 
     public $translatable = ['title', 'description'];
 
@@ -44,6 +48,26 @@ class Page extends Model
         $query->orderBy('title');
     }
 
+    /**
+     * Get the sections relationship.
+     *
+     * @return hasMany
+     */
+    public function sections()
+    {
+        return $this->hasMany(Section::class, 'page_id');
+    }
+
+    /**
+     * Get the sliders relationship.
+     *
+     * @return hasMany
+     */
+    public function sliders()
+    {
+        return $this->hasMany(Slider::class, 'page_id');
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
@@ -65,6 +89,21 @@ class Page extends Model
                     Carbon::parse(collect(explode(',', request('range')))->last())->endOfDay()
                 ]);
         });
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('featured_image')
+            ->acceptsMimeTypes([
+                'image/jpeg',
+                'image/png',
+                'image/gif',
+                ])
+            // ->useFallbackUrl('/images/avatar-1.jpg')
+            // ->useFallbackPath(public_path('/images/avatar-1.jpg'))
+            ->singleFile();
+            
+            $this->addMediaCollection('documents');     
     }
 
     /**

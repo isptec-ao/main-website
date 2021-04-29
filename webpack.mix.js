@@ -3,8 +3,8 @@ const path = require('path');
 const lodash = require("lodash");
 const folder = {
     src: "resources/", // source files
-    dist: "public/", // build files
-    dist_assets: "public/assets/" //build assets files
+    dist: "/", // build files
+    dist_assets: "assets/" //build assets files
 };
 
 /*
@@ -164,16 +164,17 @@ mix.copyDirectory("./node_modules/tinymce", folder.dist_assets + "/libs/tinymce"
     mix.combine('resources/js/front-end/app.js', folder.dist_assets + "js/front-end/app.min.js");
     mix.combine('resources/js/front-end/custom.js', folder.dist_assets + "js/front-end/custom.min.js");
 
-mix.js('resources/js/app.js', 'public/js').vue({
+    mix.setPublicPath('/');
+mix.js('resources/js/app.js', 'js').vue({
         extractStyles: true,
         globalStyles: false
     })
     // .postCss('resources/sass/app.scss', 'public/css', [
     //     //
     // ])
-    .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/app-dark.scss', 'public/css')
-    .sass('resources/sass/app-rtl.scss', 'public/css')
+    .sass('resources/sass/app.scss', 'css')
+    .sass('resources/sass/app-dark.scss', 'css')
+    .sass('resources/sass/app-rtl.scss', 'css')
     .options({
         processCssUrls: false
     })

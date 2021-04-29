@@ -3,7 +3,7 @@
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box">
-                <a href="index" class="logo logo-dark">
+                <a href="/" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="assets/images/logo.svg" alt="" height="22">
                     </span>
@@ -12,7 +12,7 @@
                     </span>
                 </a>
 
-                <a href="index" class="logo logo-light">
+                <a href="/" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="assets/images/logo-light.svg" alt="" height="22">
                     </span>
@@ -42,6 +42,8 @@
                 <div class="dropdown-menu dropdown-menu-right">
                     <a href="#" class="dropdown-item notify-item">@lang('translation.online_portal')</a></a>
                     <a href="#" class="dropdown-item notify-item">@lang('translation.webmail')</a>
+                    <a href="/ficheiros" class="dropdown-item notify-item">@lang('translation.file_repo')</a>
+                    <a href="/canvas/dashboard" class="dropdown-item notify-item">Canvas</a>
                 </div>
             </div>
             <div class="dropdown d-none d-sm-inline-block">
@@ -50,8 +52,8 @@
                     @lang('translation.careers') 
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="#" class="dropdown-item notify-item">@lang('translation.carers_lecturers')</a></a>
-                    <a href="#" class="dropdown-item notify-item">@lang('translation.careers_non_lecturers')</a>
+                    <a href="/recrutamento?cat=1" class="dropdown-item notify-item">@lang('translation.careers_lecturers')</a></a>
+                    <a href="/recrutamento?cat=2" class="dropdown-item notify-item">@lang('translation.careers_non_lecturers')</a>
                 </div>
             </div>
             <div class="dropdown d-none d-sm-inline-block logo">
@@ -60,7 +62,7 @@
                 </a>
             </div>
             <div class="dropdown d-none d-sm-inline-block logo">
-                <a href="#" class="btn notify-item">
+                <a href="/contacto" class="btn notify-item">
                     @lang('translation.contacts') 
                 </a>
             </div>
@@ -233,6 +235,12 @@
                         @case('de')
                         <img src="{{ URL::asset('/assets/images/flags/germany.jpg')}}" alt="Header Language" height="16"> <span class="align-middle">German</span>
                         @break
+                        @case('pt')
+                        <!-- item-->
+                        <a href="{{ url('lang/pt') }}" class="dropdown-item notify-item">
+                            <img src="{{ URL::asset('/assets/images/flags/pt.png')}}" alt="user-image" class="mr-1" height="20"> <span class="align-middle">Português</span>
+                        </a>
+                        @break
                         @case('es')
                         <img src="{{ URL::asset('/assets/images/flags/spain.jpg')}}" alt="Header Language" height="16"> <span class="align-middle">Spanish</span>
                         @break
@@ -248,26 +256,10 @@
                     <a href="{{ url('lang/pt') }}" class="dropdown-item notify-item">
                         <img src="{{ URL::asset('/assets/images/flags/pt.png')}}" alt="user-image" class="mr-1" height="20"> <span class="align-middle">Português</span>
                     </a>
-                    
                     <!-- item-->
                     <a href="{{ url('lang/en') }}" class="dropdown-item notify-item">
                         <img src="{{ URL::asset('/assets/images/flags/us.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">English</span>
                     </a>
-
-                    <!-- item-->
-                    <!-- <a href="{{ url('index/de') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('/assets/images/flags/germany.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">German</span>
-                    </a> -->
-
-                    <!-- item-->
-                    <!-- <a href="{{ url('index/it') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('/assets/images/flags/italy.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Italian</span>
-                    </a> -->
-
-                    <!-- item-->
-                    <!-- <a href="{{ url('index/ru') }}" class="dropdown-item notify-item">
-                        <img src="{{ URL::asset('/assets/images/flags/russia.jpg')}}" alt="user-image" class="mr-1" height="12"> <span class="align-middle">Russian</span>
-                    </a> -->
                 </div>
             </div>
 

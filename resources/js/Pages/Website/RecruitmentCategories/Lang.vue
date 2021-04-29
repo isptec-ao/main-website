@@ -14,7 +14,7 @@
         }, [dashboard]),
 
         metaInfo: {
-            title: 'Recruitment Categories'
+            title: 'Recrutamento - Categorias'
         },
         components: {
             
@@ -85,7 +85,7 @@
     <div class="row">
       <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-          <h4 class="mb-0 font-size-18">Recruitment Categories</h4>
+          <h4 class="mb-0 font-size-18">Recrutamento - Categorias</h4>
 
           <div class="page-title-right">
             <b-button-group class="btn-group-sm mt-2">
@@ -108,14 +108,14 @@
           <div class="card-body">
             <h4 class="card-title mb-4">Adicionar Translation: {{ $page.props.lang.toUpperCase() }}</h4>
 
-            <!-- Create Recruitment Categories Form -->
+            <!-- Create Recrutamento - Categorias Form -->
             <b-form @submit.prevent="form.put(route('canvas.recruitmentcategories.settranslation', $page.props.recruitmentcategory.id))">
               <slot />
               <b-form-group label="Nome" label-for="name">
                 <b-form-input id="name" type="text" v-model="form.name" :class="{'is-invalid': form.errors.name}"></b-form-input>
                 <div v-if="form.errors.name" class="invalid-feedback animated fadeIn">{{form.errors.name}}</div>
               </b-form-group>
-              <b-form-group label="Description" label-for="description">
+              <b-form-group label="Descrição" label-for="description">
                 <ckeditor v-model="form.description" :editor="editor" :config="editorConf"></ckeditor>
                 <div v-if="form.errors.description" class="invalid-feedback animated fadeIn">{{form.errors.description}}</div>
               </b-form-group>

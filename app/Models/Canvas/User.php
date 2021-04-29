@@ -51,21 +51,21 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $primaryKey = 'id';
+    // protected $primaryKey = 'id';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    // protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
-    public $incrementing = false;
+    // public $incrementing = false;
 
     /**
      * The attributes that should be hidden for arrays.

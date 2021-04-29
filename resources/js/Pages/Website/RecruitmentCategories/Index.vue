@@ -15,7 +15,7 @@
         }, [dashboard]),
 
         metaInfo: {
-            title: 'Recruitment Categories'
+            title: 'Recrutamento - Categorias'
         },
         components: {
           Pagination,
@@ -23,7 +23,7 @@
         },
         data () {
             return {
-                title: 'Recruitment Categories',
+                title: 'Recrutamento - Categorias',
                 form: {
                 search: '',
                 trashed: false,
@@ -75,7 +75,7 @@
     <div class="row">
       <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-          <h4 class="mb-0 font-size-18">Recruitment Categories</h4>
+          <h4 class="mb-0 font-size-18">Recrutamento - Categorias</h4>
           <div class="page-title-right">
             <b-button-group class="btn-group-sm mt-2">
                 <b-button v-b-modal.action-info variant="secondary">
@@ -163,13 +163,13 @@
                     </b-dropdown>
                 </div>
             </div>
-            <!-- All Recruitment Categories Table -->
+            <!-- All Recrutamento - Categorias Table -->
             <div class="table-responsive">
               <table class="table table-bordered mb-0">
                 <thead>
                   <tr>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -190,7 +190,7 @@
                           </b-button>
                           <b-dropdown bottom size="sm">
                             <template v-slot:button-content>
-                                <i class="bx bx-plus align-middle"></i> Translations
+                                <i class="bx bx-plus align-middle"></i> Traduções
                             </template>
                             <b-dropdown-item class="font-size-sm" v-for="lang in $page.props.locales" :key="lang" @click="setTrans(recruitmentcategory.id, lang)">
                             {{ lang.toUpperCase() }}

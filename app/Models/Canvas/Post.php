@@ -88,6 +88,13 @@ class Post extends Model implements HasMedia
         );
     }
 
+    public function scopeRelated($query, array $args) {
+
+        return $query->whereHas('topic', function($query) use ($args){
+            $query->whereIn('topic_id', $args);
+        })->latest()->take(3)->get();
+    }
+
     /**
      * Get the topic relationship.
      *
@@ -131,6 +138,10 @@ class Post extends Model implements HasMedia
             }
 
             return $query->published();
+        })->when($filters['topic'] ?? null, function ($query, $topic) {
+            return $query->whereHas('topic', function($query, $topic) {
+                $query->where('topic_id', $topic);
+            });
         })->when($filters['range'] ?? null, function ($query) {
             $query->whereBetween(
                 'created_at',

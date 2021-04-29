@@ -87,7 +87,7 @@ export default {
     <!-- Left Menu Start -->
     <ul id="side-menu" class="metismenu list-unstyled">
       <template v-for="item in menuItems">
-        <li class="menu-title" v-if="item.isTitle" :key="item.id">{{ $t(item.label) }}</li>
+        <li class="menu-title" v-if="item.isTitle" :key="item.id">{{ item.label }}</li>
         <li v-if="!item.isTitle && !item.isLayout" :key="item.id">
           <a
             v-if="hasItems(item)"
@@ -96,37 +96,48 @@ export default {
             :class="{'has-arrow': !item.badge, 'has-dropdown': item.badge}"
           >
             <i :class="`bx ${item.icon}`" v-if="item.icon"></i>
-            <span>{{ $t(item.label) }}</span>
+            <span>{{ item.label }}</span>
             <span
               :class="`badge badge-pill badge-${item.badge.variant} float-right`"
               v-if="item.badge"
-            >{{ $t(item.badge.text)}}</span>
+            >{{ item.badge.text}}</span>
           </a>
 
-          <a :href="item.link" v-if="!hasItems(item)" class="side-nav-link-ref">
-            <i :class="`bx ${item.icon}`" v-if="item.icon"></i>
-            <span>{{ $t(item.label) }}</span>
+          <inertia-link 
+              :href="item.link" v-if="!hasItems(item)" class="side-nav-link-ref"
+              >
+              <i :class="`bx ${item.icon}`" v-if="item.icon"></i>
+            <span>{{ item.label }}</span>
             <span
               :class="`badge badge-pill badge-${item.badge.variant} float-right`"
               v-if="item.badge"
-            >{{$t(item.badge.text)}}</span>
-          </a>
+              >{{item.badge.text}}</span>
+          </inertia-link>
 
           <ul v-if="hasItems(item)" class="sub-menu" aria-expanded="false">
             <li v-for="(subitem, index) of item.subItems" :key="index">
-              <a
-                :href="subitem.link"
+
+              <inertia-link 
+              :href="subitem.link"
                 v-if="!hasItems(subitem)"
                 class="side-nav-link-ref"
-              >{{ $t(subitem.label) }}</a>
+              >
+                  {{ subitem.label }}
+              </inertia-link>
+
               <a
                 v-if="hasItems(subitem)"
                 class="side-nav-link-a-ref has-arrow"
                 href="javascript:void(0);"
-              >{{ $t(subitem.label) }}</a>
+              >{{ subitem.label }}</a>
               <ul v-if="hasItems(subitem)" class="sub-menu mm-collapse" aria-expanded="false">
                 <li v-for="(subSubitem, index) of subitem.subItems" :key="index">
-                  <a :href="subSubitem.link" class="side-nav-link-ref">{{ $t(subSubitem.label) }}</a>
+
+                  <inertia-link 
+                  :href="subSubitem.link" class="side-nav-link-ref"
+                  >
+                      {{ subSubitem.label }}
+                  </inertia-link>
                 </li>
               </ul>
             </li>

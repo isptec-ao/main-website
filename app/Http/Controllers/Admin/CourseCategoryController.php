@@ -48,7 +48,8 @@ class CourseCategoryController extends Controller
         DB::transaction(function () use ($request) {
             $coursecategory = CourseCategory::create([
                 'name' => $request->name,
-                'description' => $request->description
+                'description' => $request->description,
+                'user_id' => auth()->guard('website')->user()->id,
             ]);
         });
 
@@ -140,7 +141,7 @@ class CourseCategoryController extends Controller
      * @param $id
      * @return mixed
      */
-    public function settranslation(Request $request, $id)
+    public function settranslation(StoreCourseCategoryRequest $request, $id)
     {
 
         DB::transaction(function () use ($request, $id) {

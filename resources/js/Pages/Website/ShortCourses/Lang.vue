@@ -1,0 +1,142 @@
+<script>
+    import BaseCanvasLayout from '@/Shared/CanvasLayout'
+    
+    export default {
+        name: "LangShortCourse",
+        layout: (h, dashboard) => h(BaseCanvasLayout, {
+            props: {
+              errors: Object,
+              shortcourse: Object,
+              lang: String,
+            }
+        }, [dashboard]),
+
+        metaInfo: {
+            title: 'Cursos de Curta Duração'
+        },
+        components: {
+            
+        },
+        data () {
+          return {
+            form: this.$inertia.form({
+            name: this.$page.props.shortcourse.name,
+            description: this.$page.props.shortcourse.description,
+            department_id: this.$page.props.shortcourse.department,
+            employee_id: this.$page.props.shortcourse.employee,
+            description: this.$page.props.shortcourse.description,
+            lang: this.$page.props.lang
+          })
+        }
+        },
+        methods: {
+            settranslation(id) {
+              this.$inertia.put(this.route('canvas.shortcourses.settranslation', id));
+          },
+        },
+        computed: {
+
+        },
+        mounted() {
+
+        },
+    }
+</script>
+<template>
+  <div>
+      <!-- start page title -->
+    <div class="row">
+      <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+          <h4 class="mb-0 font-size-18">Cursos de Curta Duração</h4>
+
+          <div class="page-title-right">
+            <b-button-group class="btn-group-sm mt-2">
+                <b-button v-b-modal.action-info variant="secondary">
+                    <i class="bx bx-info-circle"></i>
+                </b-button>
+                <inertia-link class="btn btn-secondary" :href="route('canvas.shortcourses.index')" method="get">
+                    <i class="bx bx-arrow-back"></i>
+                </inertia-link>
+            </b-button-group>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title mb-4">Adicionar Translation: {{ $page.props.lang.toUpperCase() }}</h4>
+
+            <!-- Create Cursos de Curta Duraçãos Form -->
+            <b-form @submit.prevent="form.put(route('canvas.shortcourses.settranslation', $page.props.shortcourse.id))">
+              <slot />
+              <b-form-group label="Departamento" label-for="department_id">
+              <multiselect
+                  id="ajax"
+                  v-model="form.department_id"
+                  :options="$page.props.departments"
+                  label="name"
+                  track-by="id"
+                  placeholder="Escreva para pesquisar"
+                  open-direction="bottom"
+                  deselect-label="Pressione Enter para excluir"
+                  select-label="Pressione Enter para seleccionar"
+                  selected-label="Seleccionado"
+                  tag-placeholder="Pressione Enter para criar etiqueta"
+              >
+              <span slot="noOptions">A lista está vazia</span>
+              </multiselect>
+              </b-form-group>
+              <b-form-group label="Formador" label-for="employee_id">
+              <multiselect
+                  id="ajax"
+                  v-model="form.employee_id"
+                  :options="$page.props.employees"
+                  label="full_name"
+                  track-by="id"
+                  placeholder="Escreva para pesquisar"
+                  open-direction="bottom"
+                  deselect-label="Pressione Enter para excluir"
+                  select-label="Pressione Enter para seleccionar"
+                  selected-label="Seleccionado"
+                  tag-placeholder="Pressione Enter para criar etiqueta"
+              >
+              <span slot="noOptions">A lista está vazia</span>
+              </multiselect>
+              </b-form-group>
+              <b-form-group label="Formador Externo" label-for="external_employee">
+                <b-form-input id="external_employee" type="text" v-model="form.external_employee" :class="{'is-invalid': form.errors.external_employee}"></b-form-input>
+                <div v-if="form.errors.external_employee" class="invalid-feedback animated fadeIn">{{form.errors.external_employee}}</div>
+              </b-form-group>
+              <b-form-group label="Curso" label-for="name">
+                <b-form-input id="name" type="text" v-model="form.name" :class="{'is-invalid': form.errors.name}"></b-form-input>
+                <div v-if="form.errors.name" class="invalid-feedback animated fadeIn">{{form.errors.name}}</div>
+              </b-form-group>
+              <b-form-group label="Descrição" label-for="description">
+                <b-form-textarea
+                  id="description"
+                  v-model="form.description"
+                  placeholder=""
+                  rows="3"
+                  max-rows="6"
+                ></b-form-textarea>
+                <div v-if="form.errors.description" class="invalid-feedback animated fadeIn">{{form.errors.description}}</div>
+            </b-form-group>
+                <b-button type="submit" class="btn btn-rounded" variant="brand" v-if="!form.processing">Registar</b-button>
+                <b-button class="btn btn-block btn-rounded" variant="brand" v-if="form.processing">
+                    <b-spinner small type="grow"></b-spinner>
+                </b-button>
+            </b-form>
+          </div>
+        </div>
+
+      </div>
+      <!-- end col -->
+    </div>
+    <!-- end row -->
+  </div>
+</template>

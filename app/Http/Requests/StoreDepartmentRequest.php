@@ -29,9 +29,19 @@ class StoreDepartmentRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|unique:website_tags,name',
-            'description' => 'required|unique:website_tags,name',
-        ];
+    
+        if ($this->isMethod('post')) {
+            $rules = [
+                'name' => 'required|unique:website_departments,name',
+                'description' => 'required|unique:website_departments,description',
+            ];
+        } else {
+            $rules = [
+                'name' => 'required|unique:website_departments,name,' . request()->department,
+                'description' => 'required|unique:website_departments,description,' . request()->department,
+            ];
+        }
+
+        return $rules;
     }
 }

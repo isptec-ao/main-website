@@ -12,7 +12,7 @@
         }, [dashboard]),
 
         metaInfo: {
-            title: 'Recruitment Category'
+            title: 'Recrutamento - Categorias'
         },
         components: {
             
@@ -80,7 +80,7 @@
     <div class="row">
       <div class="col-12">
         <div class="page-title-box d-flex align-items-center justify-content-between">
-          <h4 class="mb-0 font-size-18">Recruitment Categories</h4>
+          <h4 class="mb-0 font-size-18">Recrutamento - Categorias</h4>
 
           <div class="page-title-right">
             <b-button-group class="btn-group-sm mt-2">
@@ -110,7 +110,7 @@
                 <b-form-input id="name" type="text" v-model="form.name" :class="{'is-invalid': form.errors.name}"></b-form-input>
                 <div v-if="form.errors.name" class="invalid-feedback animated fadeIn">{{form.errors.name}}</div>
               </b-form-group>
-              <b-form-group label="Description" label-for="description">
+              <b-form-group label="Descrição" label-for="description">
                 <ckeditor v-model="form.description" :editor="editor" :config="editorConf"></ckeditor>
                 <div v-if="form.errors.description" class="invalid-feedback animated fadeIn">{{form.errors.description}}</div>
               </b-form-group>

@@ -30,7 +30,7 @@ class StoreSectionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:website_section,title',
+            // 'title' => 'required|unique:website_sections,title',
             'page_id' => 'required|exists:website_pages,id'
         ];
     }

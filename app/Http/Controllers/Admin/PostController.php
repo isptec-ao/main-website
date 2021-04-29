@@ -38,6 +38,19 @@ class PostController extends Controller
                 // ->only('id', 'name')
         ]);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllNews(Request $request)
+    {   
+        return Post::withCount('views')
+        ->filter($request->only('search', 'trashed'))
+        ->latest()
+        ->paginate(5);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -127,9 +140,9 @@ class PostController extends Controller
                 'user_id' => auth()->guard('website')->user()->id
             ]);
 
-            $post->topic()->sync($this->syncedTopic($request->input('topics') ?? []));
+            $post->topic()->sync($request->topics ?? []);
 
-            $post->tags()->sync($this->syncedTags($request->input('tags') ?? []));
+            $post->tags()->sync($request->tags ?? []);
 
             // Add Possible Featured Image
             if(isset($request->featured_image)){
@@ -304,7 +317,7 @@ class PostController extends Controller
      * @param $id
      * @return mixed
      */
-    public function settranslation(Request $request, $id)
+    public function settranslation(StorePostRequest $request, $id)
     {
 
         DB::transaction(function () use ($request, $id) {
@@ -319,9 +332,9 @@ class PostController extends Controller
 
             $post->save();
 
-            $post->topic()->sync($this->syncedTopic($request->input('topics') ?? []));
+            $post->topic()->sync($request->topics ?? []);
 
-            $post->tags()->sync($this->syncedTags($request->input('tags') ?? []));
+            $post->tags()->sync($request->tags ?? []);
 
 
             // Add Possible Featured Image
@@ -394,7 +407,7 @@ class PostController extends Controller
         //     ]);
         // }
 
-        return [(string) $topic->id];
+        return $topic->id;
     }
 
     /**
@@ -423,7 +436,7 @@ class PostController extends Controller
             //     ]);
             // }
 
-            return (string) $tag->id;
+            return $tag->id;
         })->toArray();
     }
 

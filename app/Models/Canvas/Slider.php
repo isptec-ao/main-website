@@ -68,6 +68,26 @@ class Slider extends Model
     }
 
     /**
+     * Get the page relationship.
+     *
+     * @return BelongsTo
+     */
+    public function page()
+    {
+        return $this->belongsTo(Page::class);
+    }
+
+    /**
+     * Get the page relationship.
+     *
+     * @return hasMany
+     */
+    public function images()
+    {
+        return $this->hasMany(SliderImage::class);
+    }
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
